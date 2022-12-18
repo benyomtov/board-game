@@ -57,7 +57,7 @@ var purpleButton = document.getElementById("purple");
 var topLeftCorner = document.querySelector(".top-left-corner");
 var topRightCorner = document.querySelector(".top-right-corner");
 var bottomLeftCorner = document.querySelector(".bottom-left-corner");
-var bottomRightCorner = document.querySelector(".top-right-corner");
+var bottomRightCorner = document.querySelector(".bottom-right-corner");
 var topSide = document.querySelectorAll(".top");
 var leftSide = document.querySelectorAll(".left");
 var rightSide = document.querySelectorAll(".right");
@@ -79,8 +79,6 @@ function markBoard(thisColor) {
     var markedSquare = document.querySelectorAll(".marked");
 
     var count = 0;
-
-    console.log(lastCount + " last count");
     
     for (let i = 0; i < markedSquare.length; i++) {
 
@@ -93,14 +91,14 @@ function markBoard(thisColor) {
         if (classArray[1] == "bottom-left-corner") {
 
             var thisId = bottomLeftCorner.id;
-            var topIdNumber = thisId - 10;
+            var thisIdNumber = Number(thisId);
+            var topIdNumber = thisIdNumber - 10;
             var topId = topIdNumber.toString();
             var topSibling = document.getElementById(topId);
             var topSiblingColor = topSibling.style.backgroundColor;
             if (topSiblingColor == thisColor) {
                 topSibling.classList.add("marked");
                 count++;
-                console.log(count);
             } 
 
 
@@ -109,18 +107,17 @@ function markBoard(thisColor) {
             if (nextSiblingColor == thisColor) {
                 nextSibling.classList.add("marked");
                 count++;
-                console.log(count);
             }
         } else if (classArray[1] == "bottom-right-corner") {
             var thisId = bottomRightCorner.id;
-            var topIdNumber = thisId - 10;
+            var thisIdNumber = Number(thisId);
+            var topIdNumber = thisIdNumber - 10;
             var topId = topIdNumber.toString();
             var topSibling = document.getElementById(topId);
             var topSiblingColor = topSibling.style.backgroundColor;
             if (topSiblingColor == thisColor) {
                 topSibling.classList.add("marked");
                 count++;
-                console.log(count);
             } 
 
 
@@ -129,51 +126,9 @@ function markBoard(thisColor) {
             if (previousSiblingColor == thisColor) {
                 nextSibling.classList.add("marked");
                 count++;
-                console.log(count);
             }
         } else if (classArray[1] == "top-right-corner") {
             var thisId = topRightCorner.id;
-            var bottomIdNumber = thisId + 10;
-            var bottomId = bottomIdNumber.toString();
-            var bottomSibling = document.getElementById(bottomId);
-            var bottomSiblingColor = bottomSibling.style.backgroundColor;
-            if (bottomSiblingColor == thisColor) {
-                bottomSibling.classList.add("marked");
-                count++;
-                console.log(count);
-            } 
-
-
-            var previousSibling = bottomRightCorner.previousElementSibling;
-            var previousSiblingColor = previousSibling.style.backgroundColor;
-            if (previousSiblingColor == thisColor) {
-                nextSibling.classList.add("marked");
-                count++;
-                console.log(count);
-            }
-        } else if (classArray[1] == "top-left-corner") {
-            var thisId = topRightCorner.id;
-            var bottomIdNumber = thisId + 10;
-            var bottomId = bottomIdNumber.toString();
-            var bottomSibling = document.getElementById(bottomId);
-            var bottomSiblingColor = bottomSibling.style.backgroundColor;
-            if (bottomSiblingColor == thisColor) {
-                bottomSibling.classList.add("marked");
-                count++;
-                console.log(count);
-            } 
-
-
-            var nextSibling = topLeftCorner.nextElementSibling;
-            var nextSiblingColor = nextSibling.style.backgroundColor;
-            if (nextSiblingColor == thisColor) {
-                nextSibling.classList.add("marked");
-                count++;
-                console.log(count);
-            }
-        } else if (classArray[1] == "top") {
-            var thisId = thisSquareId;
-            console.log(thisId);
             var thisIdNumber = Number(thisId);
             var bottomIdNumber = thisIdNumber + 10;
             var bottomId = bottomIdNumber.toString();
@@ -182,22 +137,57 @@ function markBoard(thisColor) {
             if (bottomSiblingColor == thisColor) {
                 bottomSibling.classList.add("marked");
                 count++;
-                console.log(count);
+            } 
+
+
+            var previousSibling = bottomRightCorner.previousElementSibling;
+            var previousSiblingColor = previousSibling.style.backgroundColor;
+            if (previousSiblingColor == thisColor) {
+                nextSibling.classList.add("marked");
+                count++;
+            }
+        } else if (classArray[1] == "top-left-corner") {
+            var thisId = topLeftCorner.id;
+            var thisIdNumber = Number(thisId);
+            var bottomIdNumber = thisIdNumber + 10;
+            var bottomId = bottomIdNumber.toString();
+            var bottomSibling = document.getElementById(bottomId);
+            var bottomSiblingColor = bottomSibling.style.backgroundColor;
+            if (bottomSiblingColor == thisColor) {
+                bottomSibling.classList.add("marked");
+                count++;
+            } 
+
+
+            var nextSibling = topLeftCorner.nextElementSibling;
+            var nextSiblingColor = nextSibling.style.backgroundColor;
+            if (nextSiblingColor == thisColor) {
+                nextSibling.classList.add("marked");
+                count++;
+            }
+        } else if (classArray[1] == "top") {
+            var thisId = thisSquareId;
+            var thisIdNumber = Number(thisId);
+            var bottomIdNumber = thisIdNumber + 10;
+            var bottomId = bottomIdNumber.toString();
+            var bottomSibling = document.getElementById(bottomId);
+            var bottomSiblingColor = bottomSibling.style.backgroundColor;
+            if (bottomSiblingColor == thisColor) {
+                bottomSibling.classList.add("marked");
+                count++;
             } 
             var nextSibling = thisSquare.nextElementSibling;
             var nextSiblingColor = nextSibling.style.backgroundColor;
             if (nextSiblingColor == thisColor) {
                 nextSibling.classList.add("marked");
                 count++;
-                console.log(count);
             }
 
             var previousSibling = thisSquare.nextElementSibling;
             var previousSiblingColor = previousSibling.style.backgroundColor;
-            if (previoustSiblingColor == thisColor) {
+            if (previousSiblingColor == thisColor) {
                 previousSibling.classList.add("marked");
                 count++;
-                console.log(count);
             }
         }  else if (classArray[1] == "bottom") {
             var thisId = thisSquareId;
@@ -209,14 +199,12 @@ function markBoard(thisColor) {
             if (topSiblingColor == thisColor) {
                 topSibling.classList.add("marked");
                 count++;
-                console.log(count);
             } 
             var nextSibling = thisSquare.nextElementSibling;
             var nextSiblingColor = nextSibling.style.backgroundColor;
             if (nextSiblingColor == thisColor) {
                 nextSibling.classList.add("marked");
                 count++;
-                console.log(count);
             }
 
             var previousSibling = thisSquare.previousElementSibling;
@@ -224,7 +212,6 @@ function markBoard(thisColor) {
             if (previousSiblingColor == thisColor) {
                 previousSibling.classList.add("marked");
                 count++;
-                console.log(count);
             }
         }  else if (classArray[1] == "left") {
             var thisId = thisSquareId;
@@ -236,7 +223,6 @@ function markBoard(thisColor) {
             if (bottomSiblingColor == thisColor) {
                 bottomSibling.classList.add("marked");
                 count++;
-                console.log(count);
             } 
 
             var nextSibling = thisSquare.nextElementSibling;
@@ -244,7 +230,6 @@ function markBoard(thisColor) {
             if (nextSiblingColor == thisColor) {
                 nextSibling.classList.add("marked");
                 count++;
-                console.log(count);
             }
 
             var thisTopId = thisSquareId;
@@ -256,19 +241,17 @@ function markBoard(thisColor) {
             if (topSiblingColor == thisColor) {
                 topSibling.classList.add("marked");
                 count++;
-                console.log(count);
             }
         }  else if (classArray[1] == "right") {
             var thisId = thisSquareId;
             var thisIdNumber = Number(thisId);
-            var bottomIdNumber = thisId + 10;
+            var bottomIdNumber = thisIdNumber + 10;
             var bottomId = bottomIdNumber.toString();
             var bottomSibling = document.getElementById(bottomId);
             var bottomSiblingColor = bottomSibling.style.backgroundColor;
             if (bottomSiblingColor == thisColor) {
                 bottomSibling.classList.add("marked");
                 count++;
-                console.log(count);
             } 
 
             var previousSibling = thisSquare.previousElementSibling;
@@ -276,7 +259,6 @@ function markBoard(thisColor) {
             if (previousSiblingColor == thisColor) {
                 previousSibling.classList.add("marked");
                 count++;
-                console.log(count);
             }
 
             var thisTopId = thisSquareId;
@@ -288,7 +270,6 @@ function markBoard(thisColor) {
             if (topSiblingColor == thisColor) {
                 topSibling.classList.add("marked");
                 count++;
-                console.log(count);
             }
         }  else {
             var thisId = thisSquareId;
@@ -300,7 +281,6 @@ function markBoard(thisColor) {
             if (bottomSiblingColor == thisColor) {
                 bottomSibling.classList.add("marked");
                 count++;
-                console.log(count);
             } 
 
             var nextSibling = thisSquare.nextElementSibling;
@@ -308,7 +288,6 @@ function markBoard(thisColor) {
             if (nextSiblingColor == thisColor) {
                 nextSibling.classList.add("marked");
                 count++;
-                console.log(count);
             }
 
             var previousSibling = thisSquare.previousElementSibling;
@@ -316,7 +295,6 @@ function markBoard(thisColor) {
             if (previousSiblingColor == thisColor) {
                 previousSibling.classList.add("marked");
                 count++;
-                console.log(count);
             }
 
             var thisTopId = thisSquareId;
@@ -328,7 +306,6 @@ function markBoard(thisColor) {
             if (topSiblingColor == thisColor) {
                 topSibling.classList.add("marked");
                 count++;
-                console.log(count);
             }
         }
 

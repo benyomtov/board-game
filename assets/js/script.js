@@ -74,11 +74,23 @@ purpleButton.addEventListener("click", () => markBoard("purple"));
 
 var lastCount = 0;
 
+var gameboardSquares = document.querySelectorAll(".gameboard-square");
+
+var score = -1;
+const scoreDisplay = document.getElementById("score");
+scoreDisplay.textContent = "Moves: " + score;
+
+const initialSquare = document.getElementById("90");
+var initialColor = initialSquare.style.backgroundColor;
+markBoard(initialColor);
+
 function markBoard(thisColor) {
 
     var markedSquare = document.querySelectorAll(".marked");
 
     var count = 0;
+
+    var sameColor = true;
     
     for (let i = 0; i < markedSquare.length; i++) {
 
@@ -312,9 +324,27 @@ function markBoard(thisColor) {
     }
     if (count == lastCount) {
         lastCount = 0;
+            score++;
+            scoreDisplay.textContent = "Moves: " + score;
+        
+        var squareColor = gameboardSquares[0].style.backgroundColor;
+
+        for (let i = 1; i < gameboardSquares.length; i++) {
+
+            if (gameboardSquares[i].style.backgroundColor != squareColor) {
+                sameColor = false;
+            }
+        }
+    
+        if (sameColor) {
+            score = 0;
+            alert("You Win!");
+        }
+
         return;
     } else {
         lastCount = count;
         markBoard(thisColor);
     }
+
 }

@@ -38,7 +38,7 @@ function createSquares(){
     }
     square.style.width = "58px";
     square.style.height = "58px";
-    square.style.border = "1px dotted gray"
+    square.style.border = "1px dotted black"
     square.style.backgroundColor = randomizeSquareColor();
     square.style.margin = "0";
     gameboard.appendChild(square);
@@ -195,7 +195,7 @@ function markBoard(thisColor) {
                 count++;
             }
 
-            var previousSibling = thisSquare.nextElementSibling;
+            var previousSibling = thisSquare.previousElementSibling;
             var previousSiblingColor = previousSibling.style.backgroundColor;
             if (previousSiblingColor == thisColor) {
                 previousSibling.classList.add("marked");
@@ -326,6 +326,13 @@ function markBoard(thisColor) {
         lastCount = 0;
             score++;
             scoreDisplay.textContent = "Moves: " + score;
+
+            var updatedMarkedSquares = document.querySelectorAll(".marked");
+
+            for (var j = 0; j < updatedMarkedSquares.length; j++) {
+                var thisMarkedSquare = updatedMarkedSquares[j]; 
+                thisMarkedSquare.style.border = "1px dashed white";
+            }
         
         var squareColor = gameboardSquares[0].style.backgroundColor;
 
